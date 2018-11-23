@@ -26,7 +26,12 @@ cocktail_serialized = open(url2).read
 cocktail = JSON.parse(cocktail_serialized)
 
 cocktail['drinks'].each do |i|
-  Cocktail.create!( name: i['strDrink'])
+  url = i['strDrinkThumb']
+  coctail = Cocktail.new(name: i['strDrink'])
+  coctail.remote_photo_url = url
+  coctail.save
+  # Cocktail.create!( name: i['strDrink'], photo: i['strDrinkThumb'])
+  
 end
 
 puts "Finished"
